@@ -216,7 +216,7 @@
           <div>Address: {shortenHash($store.userAddress)}</div>
           <div>
             {#if $store.userBalance}
-              {formatTokenAmount($store.userBalance / 10 ** 6)} ꜩ
+              Balance: {formatTokenAmount($store.userBalance / 10 ** 6)} ꜩ
             {/if}
           </div>
           <div>

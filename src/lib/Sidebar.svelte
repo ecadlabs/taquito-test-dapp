@@ -58,6 +58,7 @@
         -webkit-backdrop-filter: blur(4px);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.18);
+        list-style-image: url(description_white_24dp.svg);
 
         padding: 10px;
         margin: 10px 0px;
