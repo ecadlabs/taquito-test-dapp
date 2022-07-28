@@ -69,6 +69,9 @@
       }
 
       store.updateWallet(wallet);
+
+      const peers = await wallet.client.getPeers();
+      connectedWallet = peers[0].name;
     } catch (err) {
       console.error(err);
     }
@@ -177,9 +180,9 @@
 </style>
 
 <svelte:window
-  on:click={event => {
+  on:click={() => {
     if (showDialog === true) {
-      // showDialog = false;
+      showDialog = false;
     }
   }}
 />
@@ -190,7 +193,8 @@
       class="wallet"
       id="wallet-button"
       on:click={() => {
-        showDialog = !showDialog;
+        // this is required to delay the window click that closes the popup
+        setTimeout(() => (showDialog = !showDialog), 100);
       }}
     >
       <span>
