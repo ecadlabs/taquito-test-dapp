@@ -7,6 +7,13 @@
   import Layout from "./Layout.svelte";
   import TestContainer from "./lib/TestContainer.svelte";
 
+  // https://ide.ligolang.org/p/RL93C86hftTTCNGU0ykLMw | https://ide.ligolang.org/p/61ENTorA4PSfQg-jhpu0jA
+  // https://better-call.dev/florencenet/KT1PzUGbdKaN332Smfd1ExpdKQ7BSzzJRqJ4/operations
+  // https://better-call.dev/granadanet/KT1T836HqhBu9waqmknStVDCXu2WogZtzsNz/operations
+  // https://better-call.dev/hangzhounet/KT1T2gL26SwYMxpkR5SZT1pHRBF84knfw8Cg/operations
+  // https://better-call.dev/ithacanet/KT1QKmcNBcfzVTXG2kBcE6XqXtEuYYUzMcT5/operations
+  // https://better-call.dev/kathmandunet/KT1BQuSVXWz23iGeXQCrAGR6GcVcqKeE1F7T/operations
+
   let browser = "";
 
   const changeNetwork = event => {
@@ -20,8 +27,16 @@
         store.updateNetworkType(NetworkType.HANGZHOUNET);
         break;
       case "ithacanet":
-        store.updateTezos(new TezosToolkit(rpcUrl.ghostnet));
+        store.updateTezos(new TezosToolkit(rpcUrl.ithacanet));
         store.updateNetworkType(NetworkType.ITHACANET);
+        break;
+      case "ghostnet":
+        store.updateTezos(new TezosToolkit(rpcUrl.ghostnet));
+        store.updateNetworkType(NetworkType.GHOSTNET);
+        break;
+      case "kathmandunet":
+        store.updateTezos(new TezosToolkit(rpcUrl.kathmandunet));
+        store.updateNetworkType(NetworkType.KATHMANDUNET);
         break;
       case "custom":
         //TODO: input custom RPC URL
@@ -110,10 +125,6 @@
       }
     }
   }
-
-  .test-container {
-    position: relative;
-  }
 </style>
 
 <Layout>
@@ -150,12 +161,12 @@
               on:change={changeNetwork}
               on:blur={changeNetwork}
             >
-              {#each Object.values(NetworkType) as network}
+              {#each Object.keys(NetworkType) as network}
                 <option
-                  value={network}
-                  selected={$store.networkType === network}
+                  value={network.toLowerCase()}
+                  selected={$store.networkType === network.toLowerCase()}
                 >
-                  {network[0].toUpperCase() + network.slice(1)}
+                  {network[0].toUpperCase() + network.toLowerCase().slice(1)}
                 </option>
               {/each}
             </select>

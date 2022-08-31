@@ -94,6 +94,7 @@
     height: 100%;
     display: grid;
     place-items: center;
+    position: relative;
 
     .testbox {
       background: rgba(255, 255, 255, 0.25);
@@ -278,6 +279,17 @@
             />
           </label>
         </div>
+      {:else if test.inputRequired && test.inputType === "sapling"}
+        <div class="input-sapling">
+          <label for="sapling-mnemonic">
+            <span>Your menmonic:</span>
+            <textarea
+              id="spaling-mnemonic"
+              rows="3"
+              placeholder="Your mnemonic here..."
+            />
+          </label>
+        </div>
       {/if}
       <div class="test-run">
         <button on:click={run} disabled={loading}>
@@ -312,7 +324,7 @@
               Operation hash:
               {#if $store.networkType === NetworkType.ITHACANET}
                 <a
-                  href={`https://ithacanet.tzkt.io/${opHash}`}
+                  href={`https://better-call.dev/ithacanet/opg/${opHash}/contents`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -320,7 +332,15 @@
                 </a>
               {:else if $store.networkType === NetworkType.HANGZHOUNET}
                 <a
-                  href={`https://hangzhounet.tzkt.io/${opHash}`}
+                  href={`https://better-call.dev/hangzhounet/opg/${opHash}/contents`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {shortenHash(opHash)}
+                </a>
+              {:else if $store.networkType === NetworkType.GHOSTNET}
+                <a
+                  href={`https://better-call.dev/ghostnet/opg/${opHash}/contents`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -13,7 +13,7 @@ export interface TestSettings {
   run: (input?: any) => Promise<TestResult>;
   showExecutionTime: boolean;
   inputRequired: boolean;
-  inputType?: "string" | "set-limits";
+  inputType?: "string" | "set-limits" | "sapling";
   lastResult: { option: "none" | "some"; val: boolean };
 }
 

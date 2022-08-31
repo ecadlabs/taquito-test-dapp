@@ -9,6 +9,7 @@ import type { ContractProvider } from "@taquito/taquito";
 import type { BeaconWallet } from "@taquito/beacon-wallet";
 import { char2Bytes, verifySignature } from "@taquito/utils";
 import type { RequestSignPayloadInput } from "@airgap/beacon-sdk";
+import { SaplingToolkit, InMemorySpendingKey } from "@taquito/sapling";
 import { SigningType } from "./types";
 import { get } from "svelte/store";
 import type { TestSettings, TestResult } from "./types";
@@ -517,6 +518,12 @@ const permit = async (Tezos: TezosToolkit, wallet: BeaconWallet) => {
   return { success: false, opHash: "" };
 };
 
+const sapling = async (
+  contract: ContractAbstraction<Wallet>
+): Promise<TestResult> => {
+  return { success: false, opHash: "" };
+};
+
 export const list = [
   "Send tez",
   "Contract call with int",
@@ -532,7 +539,8 @@ export const list = [
   "Verify a provided signature",
   "Set the transaction limits",
   "Subscribe to confirmations",
-  "Permit contract"
+  "Permit contract",
+  "Sapling"
 ];
 
 export const init = (
@@ -695,6 +703,16 @@ export const init = (
     run: () => permit(Tezos, wallet),
     showExecutionTime: false,
     inputRequired: false,
+    lastResult: { option: "none", val: false }
+  },
+  {
+    id: "sapling",
+    name: "Sapling transactions",
+    description: "This test sends a sapling transaction",
+    run: () => sapling(contract as ContractAbstraction<Wallet>),
+    showExecutionTime: false,
+    inputRequired: true,
+    inputType: "sapling",
     lastResult: { option: "none", val: false }
   }
   /*{
