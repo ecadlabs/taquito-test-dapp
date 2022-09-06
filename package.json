@@ -24,11 +24,10 @@
     "vite-compatible-readable-stream": "^3.6.1"
   },
   "dependencies": {
-    "@airgap/beacon-sdk": "^3.1.3",
-    "@taquito/beacon-wallet": "^13.0.1",
-    "@taquito/sapling": "^13.0.1-e9c389fe--1524",
-    "@taquito/taquito": "^13.0.1",
-    "@taquito/utils": "^13.0.1-e9c389fe--1524",
+    "@airgap/beacon-sdk": "^3.1.4",
+    "@taquito/beacon-wallet": "^14.0.0-beta-RC.0",
+    "@taquito/taquito": "^14.0.0-beta-RC.0",
+    "@taquito/utils": "^14.0.0-beta-RC.0",
     "buffer": "^6.0.3"
   },
   "alias": {

@@ -9,7 +9,6 @@ import type { ContractProvider } from "@taquito/taquito";
 import type { BeaconWallet } from "@taquito/beacon-wallet";
 import { char2Bytes, verifySignature } from "@taquito/utils";
 import type { RequestSignPayloadInput } from "@airgap/beacon-sdk";
-import { SaplingToolkit, InMemorySpendingKey } from "@taquito/sapling";
 import { SigningType } from "./types";
 import { get } from "svelte/store";
 import type { TestSettings, TestResult } from "./types";
